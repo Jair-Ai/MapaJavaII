@@ -5,6 +5,8 @@
  */
 package mapajavaii;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author jair
@@ -13,25 +15,19 @@ public class CalculandoEmprestimo {
     int score;
     double salario;
     int idade;
-    double salarioMinimo;
+    double emprestimoPossivel;
+
+    public double getEmprestimoPossivel() {
+        return emprestimoPossivel;
+    }
+
+    public void setEmprestimoPossivel(double emprestimoPossivel) {
+        this.emprestimoPossivel = emprestimoPossivel;
+    }
     
-    public CalculandoEmprestimo(int score, double salario, int idade) {
-        this.salarioMinimo = 1093;
-        if(score <= 0 || score > 1000){
-            throw new IllegalArgumentException("Score deve ser entre 0 e 1000.");
-        }
-        else{
-            this.score = score;
-        }
-        if(salario < salarioMinimo){
-            throw new IllegalArgumentException("Salario deve ser maior ou igual que o salario minimo do pais.");
-        }else{
-            this.salario = salario;
-        }
-        if(idade < 18){
-            throw new IllegalArgumentException("Salario deve ser maior ou igual que o salario minimo do pais.");
-        }
-        this.idade = idade;
+    public CalculandoEmprestimo(int scoreClient, double salarioClient, int idadeClient) {
+        
+        
     }
 
     public int getScore() {
@@ -58,7 +54,17 @@ public class CalculandoEmprestimo {
         this.idade = idade;
     }
     
-    public void calculatingLoan() {
-        //
+    public String calculatingLoan() {
+        if (this.score < 300 && this.idade <=25){
+            return "Clientes entre com idade entre 18 e 25 anos só podem receber empréstimos se o seu score for maior que 300";
+            
+        }else{
+            if (score > 500){
+                setEmprestimoPossivel(emprestimoPossivel=this.salario*12);
+            }else{
+                setEmprestimoPossivel(emprestimoPossivel=this.salario*6);
+            }
+        }
+        return String.valueOf(this.emprestimoPossivel);
     }
 }

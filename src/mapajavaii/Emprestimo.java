@@ -1,5 +1,8 @@
 package mapajavaii;
 
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -35,7 +38,7 @@ public class Emprestimo extends javax.swing.JFrame {
         labelIdade = new java.awt.Label();
         labelScore1 = new java.awt.Label();
         labelRenda1 = new java.awt.Label();
-        ValorLiberado = new javax.swing.JTextField();
+        valorLiberado = new javax.swing.JTextField();
         labelValorLiberado = new javax.swing.JLabel();
         titulo = new javax.swing.JLabel();
 
@@ -60,10 +63,10 @@ public class Emprestimo extends javax.swing.JFrame {
 
         labelRenda1.setText("Renda");
 
-        ValorLiberado.setToolTipText("");
-        ValorLiberado.addActionListener(new java.awt.event.ActionListener() {
+        valorLiberado.setToolTipText("");
+        valorLiberado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ValorLiberadoActionPerformed(evt);
+                valorLiberadoActionPerformed(evt);
             }
         });
 
@@ -84,7 +87,7 @@ public class Emprestimo extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(127, 127, 127)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(ValorLiberado, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(valorLiberado, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(labelValorLiberado))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
@@ -127,7 +130,7 @@ public class Emprestimo extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addComponent(labelValorLiberado)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ValorLiberado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(valorLiberado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41))
         );
 
@@ -135,16 +138,50 @@ public class Emprestimo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void fazerCalculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fazerCalculoActionPerformed
-        // TODO add your handling code here:
+        
+        //Variables to make calculations
+        int checkScore = Integer.parseInt(score.getText());
+        double checkRenda = Double.parseDouble(renda.getText());
+        int checkIdade = Integer.parseInt(idade.getText());
+        //Basic salary
+        double salarioMinimo;
+        salarioMinimo = 1093;
+        //Messages to Jpanel
+        ArrayList listaMensagens = new ArrayList();
+        
+        if(checkScore <= 0 || checkScore > 1000){
+            listaMensagens.add("Score deve ser entre 0 e 1000.");
+        }
+
+        if(checkRenda < salarioMinimo){
+            listaMensagens.add("Salario deve ser maior ou igual que o salario minimo do pais.");
+        }
+        if(checkIdade < 18){
+            listaMensagens.add("Sistema não faz emprestimo a menores de 18 anos.");
+        }
+       
+        if (listaMensagens.isEmpty()){
+            CalculandoEmprestimo calculando = new CalculandoEmprestimo(checkScore, checkRenda, checkIdade);
+            valorLiberado.setText(calculando.calculatingLoan());
+            
+        }else{
+            String output = "";
+            for (int i = 0; i  < listaMensagens.size();i++){
+                output+= " " +listaMensagens.get(i) + "\n";
+            }
+            JOptionPane.showMessageDialog(null, output);
+        }
+        
+        
     }//GEN-LAST:event_fazerCalculoActionPerformed
 
     private void rendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rendaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_rendaActionPerformed
 
-    private void ValorLiberadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ValorLiberadoActionPerformed
+    private void valorLiberadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valorLiberadoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_ValorLiberadoActionPerformed
+    }//GEN-LAST:event_valorLiberadoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -182,7 +219,6 @@ public class Emprestimo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField ValorLiberado;
     private java.awt.Button fazerCalculo;
     private java.awt.TextField idade;
     private java.awt.Label labelIdade;
@@ -192,5 +228,6 @@ public class Emprestimo extends javax.swing.JFrame {
     private java.awt.TextField renda;
     private java.awt.TextField score;
     private javax.swing.JLabel titulo;
+    private javax.swing.JTextField valorLiberado;
     // End of variables declaration//GEN-END:variables
 }

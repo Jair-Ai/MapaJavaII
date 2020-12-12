@@ -26,7 +26,9 @@ public class CalculandoEmprestimo {
     }
     
     public CalculandoEmprestimo(int scoreClient, double salarioClient, int idadeClient) {
-        
+        this.idade = idadeClient;
+        this.salario = salarioClient;
+        this.score = scoreClient;
         
     }
 
@@ -55,6 +57,7 @@ public class CalculandoEmprestimo {
     }
     
     public String calculatingLoan() {
+
         if (this.score < 300 && this.idade <=25){
             return "Clientes entre com idade entre 18 e 25 anos só podem receber empréstimos se o seu score for maior que 300";
             

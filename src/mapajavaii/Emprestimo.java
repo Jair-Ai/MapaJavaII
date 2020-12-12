@@ -57,6 +57,12 @@ public class Emprestimo extends javax.swing.JFrame {
             }
         });
 
+        idade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                idadeActionPerformed(evt);
+            }
+        });
+
         labelIdade.setText("Idade");
 
         labelScore1.setText("Score");
@@ -85,11 +91,9 @@ public class Emprestimo extends javax.swing.JFrame {
                         .addGap(81, 81, 81)
                         .addComponent(titulo))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(127, 127, 127)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(valorLiberado, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelValorLiberado))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(137, 137, 137)
+                        .addComponent(labelValorLiberado)))
+                .addContainerGap(87, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(52, 52, 52)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -109,6 +113,10 @@ public class Emprestimo extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                         .addComponent(idade, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(51, 51, 51))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(valorLiberado, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -182,6 +190,10 @@ public class Emprestimo extends javax.swing.JFrame {
     private void valorLiberadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valorLiberadoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_valorLiberadoActionPerformed
+
+    private void idadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idadeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_idadeActionPerformed
 
     /**
      * @param args the command line arguments
